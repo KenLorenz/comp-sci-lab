@@ -1,5 +1,3 @@
-
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -9,11 +7,10 @@ import tensorflow as tf;
 from sklearn.model_selection import train_test_split
 
 from keras.models import Sequential
-from keras.layers import Dense, Flatten, Conv2D, MaxPool2D, Dropout
+from keras.layers import Dense
 
-from keras.optimizers import SGD
-from keras import optimizers
-from keras.callbacks import ReduceLROnPlateau, EarlyStopping
+# from keras import optimizers
+
 from keras.utils import to_categorical #.np_utils
 from keras import Input
 
@@ -45,10 +42,9 @@ model = Sequential(
     [               
         tf.keras.Input(shape=(784,)),
         
-        #Dense(30, activation='relu', name='L1'), # 28
-        Dense(128, activation='relu', name='L2'), # 14
-        Dense(64, activation='relu', name='L3'), # 7
-        Dense(26, activation='softmax', name='L4') # 1
+        Dense(128, activation='relu', name='L2'),
+        Dense(64, activation='relu', name='L3'),
+        Dense(26, activation='softmax', name='L4') # 26 due to y_train
         
     ], name = "my_model" 
 )
@@ -64,5 +60,7 @@ model.compile(
 
 model.fit(
     x_train, y_train,
-    epochs=1
+    epochs=20
 )
+
+model.save('./model/main.keras')
