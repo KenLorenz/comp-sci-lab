@@ -9,9 +9,7 @@ from sklearn.model_selection import train_test_split
 from keras.models import Sequential
 from keras.layers import Dense
 
-# from keras import optimizers
-
-from keras.utils import to_categorical #.np_utils
+from keras.utils import to_categorical
 from keras import Input
 
 print('-- phase 1: Reading dataset --')
@@ -26,7 +24,7 @@ x = dataset.drop('0', axis = 1)
 y = dataset['0']
 
 print(f'x: {x.shape}')
-print(f'y: {y.shape}\n\n')
+print(f'y: {y.shape}')
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2)
 
@@ -35,8 +33,6 @@ y_train = np.reshape(y_train.values, (y_train.shape[0], 1))
 print('\n Dataset prepared! \n')
 
 print('-- phase 3: Preparing model --')
-
-print(f'{x_train.shape}')
 
 model = Sequential(
     [               
