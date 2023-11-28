@@ -1,6 +1,7 @@
+# IF Console returns "KILLED", the process dies due to lack of proper specs.
+
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 import tensorflow as tf;
 
@@ -38,9 +39,9 @@ model = Sequential(
     [               
         tf.keras.Input(shape=(784,)),
         
-        Dense(128, activation='relu', name='L2'),
-        Dense(64, activation='relu', name='L3'),
-        Dense(26, activation='softmax', name='L4') # 26 due to y_train
+        Dense(128, activation='relu'),
+        Dense(64, activation='relu'),
+        Dense(26, activation='softmax') # 26 due to y_train
         
     ], name = "my_model" 
 )
@@ -57,7 +58,7 @@ model.compile(
 
 model.fit(
     x_train, y_train,
-    epochs=20
+    epochs=1
 )
 
 
