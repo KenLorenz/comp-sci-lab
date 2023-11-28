@@ -15,12 +15,13 @@ from keras.utils import to_categorical #.np_utils
 from keras import Input
 
 print('-- phase 1: Reading dataset --')
-# phase 1
+
 csv_file= pd.read_csv('dataset/A_Z Handwritten Data.csv').astype('float32')
 dataset = pd.DataFrame(csv_file)
+print('\n Dataset acquired!\n')
 
 print('-- phase 2: Preparing dataset --')
-# phase 2
+
 x = dataset.drop('0', axis = 1)
 y = dataset['0']
 
@@ -29,15 +30,14 @@ print(f'y: {y.shape}\n\n')
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2)
 
-#x_train = np.reshape(x_train.values, (x_train.shape[0], 28, 28,1))
 y_train = np.reshape(y_train.values, (y_train.shape[0], 1))
 
-print('-- phase 3: Preparing model--')
-# phase 3
+print('\n Dataset prepared! \n')
+
+print('-- phase 3: Preparing model --')
 
 print(f'{x_train.shape}')
 
-# tf.random.set_seed(1234)
 model = Sequential(
     [               
         tf.keras.Input(shape=(784,)),
@@ -49,12 +49,13 @@ model = Sequential(
     ], name = "my_model" 
 )
 
+print('\n Model Created! \n')
 
 print('-- phase 4: Training model --')    
-# phase 4
+
 
 model.compile(
-    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(),
     optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
 )
 
@@ -63,4 +64,6 @@ model.fit(
     epochs=20
 )
 
+
+print('\n-- Training end, saving model --\n')
 model.save('./model/main.keras')
