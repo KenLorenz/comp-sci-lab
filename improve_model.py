@@ -39,7 +39,7 @@ modelLoad = tf.keras.models.load_model('model/main.keras')
 
 modelLoad.fit(
     x_train, y_train,
-    epochs=50
+    epochs=5
 )
 
 
