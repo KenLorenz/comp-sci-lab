@@ -16,8 +16,6 @@ from keras.layers import Dense
 
 print('-- Verifying/Loading dataset...')
 
-verify_dataset() # Checks if the dataset is splitted already, makes one if not
-
 x_train = load_x_train()
 y_train = load_y_train()
 

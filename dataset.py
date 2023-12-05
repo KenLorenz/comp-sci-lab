@@ -48,15 +48,15 @@ def verify_dataset():
         return
     except:    
         try:
-            x_train = load_x_train()
+            x_train = load_x_train() # will optimize
             y_train = load_y_train()
             x_test = load_x_test()
             y_test = load_y_test()
         except:
-            print('\nmissing sub datasets, creating...')
+            print('\nmissing sub dataset, creating...')
             dataset_train_test_to_csv()
         
-def load_train_test_all(): # loads all datasets
+def load_train_test_all(): # loads all datasets, still kept just in-case.
     
     x_train = load_x_train()
     y_train = load_y_train()
@@ -69,6 +69,7 @@ def load_train_test_all(): # loads all datasets
     print(f'\ny_test shape: {y_test.shape}')
     
     return x_train, x_test, y_train, y_test
+
 
 def load_x_train():
     return pd.read_csv('subdataset/x_train.csv', header=None).astype('float32')
