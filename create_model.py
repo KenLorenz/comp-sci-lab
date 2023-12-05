@@ -5,7 +5,8 @@ import pandas as pd
 
 import tensorflow as tf;
 
-from sklearn.model_selection import train_test_split
+from dataset import verify_dataset, load_x_train, load_y_train, limit_train_count
+# from sklearn.model_selection import train_test_split
 
 from keras.models import Sequential
 from keras.layers import Dense
@@ -13,27 +14,19 @@ from keras.layers import Dense
 # from keras.utils import to_categorical
 # from keras import Input
 
-print('-- phase 1: Reading dataset --')
+print('-- Verifying/Loading dataset...')
 
-csv_file= pd.read_csv('dataset/A_Z Handwritten Data.csv').astype('float32')
-dataset = pd.DataFrame(csv_file)
-print('\n Dataset acquired!\n')
+verify_dataset() # Checks if the dataset is splitted already, makes one if not
 
-print('-- phase 2: Preparing dataset --')
+x_train = load_x_train()
+y_train = load_y_train()
 
-x = dataset.drop('0', axis = 1)
-y = dataset['0']
+print(f'\nx_train shape: {x_train.shape}')
+print(f'\ny_train shape: {y_train.shape}')
 
-print(f'x: {x.shape}')
-print(f'y: {y.shape}')
+print('\n-- Dataset prepared!')
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2)
-
-y_train = np.reshape(y_train.values, (y_train.shape[0], 1))
-
-print('\n Dataset prepared! \n')
-
-print('-- phase 3: Preparing model --')
+print('\n-- Creating Model')
 
 model = Sequential(
     [               
@@ -46,10 +39,11 @@ model = Sequential(
     ], name = "my_model" 
 )
 
-print('\n Model Created! \n')
+print('\n-- Model Created!')
 
-print('-- phase 4: Training model --')    
+print('\n-- Training model\n')
 
+trainCount = int(input('Initial Training Iterations (min=0, max=10): '))
 
 model.compile(
     loss=tf.keras.losses.SparseCategoricalCrossentropy(),
@@ -58,9 +52,10 @@ model.compile(
 
 model.fit(
     x_train, y_train,
-    epochs=1
+    epochs=limit_train_count(trainCount,0,10)
 )
 
 
-print('\n-- Training end, saving model --\n')
-model.save('./model/main.keras')
+print('\n-- Training end, saving model\n')
+modelName = str(input('Enter a new model name: '))
+model.save(f'./model/{modelName}.keras')
