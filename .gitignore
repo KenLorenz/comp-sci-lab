@@ -1,3 +1,5 @@
 .venv
-*.csv
+dataset/*
 check.py
+create_sets.py
+__pycache__

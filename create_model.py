@@ -6,20 +6,19 @@ import pandas as pd
 import tensorflow as tf;
 
 from dataset import verify_dataset, load_x_train, load_y_train, limit_train_count
-# from sklearn.model_selection import train_test_split
 
 from keras.models import Sequential
 from keras.layers import Dense
 
-# from keras.utils import to_categorical
-# from keras import Input
-
 print('-- Verifying/Loading dataset...')
 
-verify_dataset()
+# verify_dataset()
 
 x_train = load_x_train()
 y_train = load_y_train()
+
+print(x_train.head)
+print(type(y_train))
 
 print(f'\nx_train shape: {x_train.shape}')
 print(f'\ny_train shape: {y_train.shape}')

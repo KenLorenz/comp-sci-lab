@@ -6,7 +6,7 @@ from dataset import verify_dataset, load_x_train, load_y_train, limit_train_coun
 
 print('-- Verifying/Loading dataset...')
 
-verify_dataset()
+# verify_dataset()
 
 x_train = load_x_train()
 y_train = load_y_train()

@@ -20,25 +20,20 @@ def dataset_train_test_to_csv(): # creates csv for x_train, x_test, y_train, y_t
     x_train, x_test, y_train, y_test = split_dataset()
     
     print('\nCreating Csv 1/4')
-    x_train.to_csv('subdataset/x_train.csv', index=False, header=False)
+    x_train.head(1000).to_csv('subdataset/x_train.csv', index=False, header=False)
     
     print('\nCreating Csv 2/4')
-    y_train.to_csv('subdataset/y_train.csv', index=False, header=False)
+    y_train.head(1000).to_csv('subdataset/y_train.csv', index=False, header=False)
     
     print('\nCreating Csv 3/4')
-    x_test.to_csv('subdataset/x_test.csv', index=False, header=False)
+    x_test.head(1000).to_csv('subdataset/x_test.csv', index=False, header=False)
     
     print('\nCreating Csv 4/4')
-    y_test.to_csv('subdataset/y_test.csv', index=False, header=False)
-    
-    print(f'\nx_train shape: {x_train.shape}')
-    print(f'\ny_train shape: {y_train.shape}')
-    print(f'\nx_test shape: {x_test.shape}')
-    print(f'\ny_test shape: {y_test.shape}')
+    y_test.head(1000).to_csv('subdataset/y_test.csv', index=False, header=False)
     
     print('\n-- Done --')
 
-def verify_dataset():
+""" def verify_dataset():
     
     try:
         os.mkdir('subdataset')
@@ -54,7 +49,7 @@ def verify_dataset():
             y_test = load_y_test()
         except:
             print('\nmissing sub dataset, creating...')
-            dataset_train_test_to_csv()
+            dataset_train_test_to_csv() """
         
 def load_train_test_all(): # loads all datasets, still kept just in-case.
     
