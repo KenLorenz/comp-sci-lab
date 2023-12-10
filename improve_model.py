@@ -1,8 +1,7 @@
-# IF Console returns "KILLED", the process dies due to lack of proper specs.
-
 import tensorflow as tf;
 
 from dataset import load_x_train, load_y_train, limit_train_count
+
 
 print('-- Loading dataset...')
 
@@ -24,11 +23,11 @@ except:
     print('Model not found!')
     exit()
 
-trainCount = int(input('Training Iterations (min=0, max=100): '))
+trainCount = int(input('Training Iterations (min=0, max=10000): '))
 
 modelLoad.fit(
     x_train, y_train,
-    epochs=limit_train_count(trainCount,0,100)
+    epochs=limit_train_count(trainCount,0,10000) # basically an input with min and max limit
 )
 
 

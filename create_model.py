@@ -1,8 +1,5 @@
 # IF Console returns "KILLED", the process dies due to lack of proper specs.
 
-import numpy as np
-import pandas as pd
-
 import tensorflow as tf;
 
 from dataset import load_x_train, load_y_train, limit_train_count
@@ -12,12 +9,8 @@ from keras.layers import Dense
 
 print('-- Loading dataset...')
 
-
 x_train = load_x_train()
 y_train = load_y_train()
-
-print(x_train.head)
-print(type(y_train))
 
 print(f'\nx_train shape: {x_train.shape}')
 print(f'\ny_train shape: {y_train.shape}')
@@ -41,7 +34,7 @@ print('\n-- Model Created!')
 
 print('\n-- Training model\n')
 
-trainCount = int(input('Initial Training Iterations (min=0, max=10): '))
+trainCount = int(input('Initial Training Iterations (min=0, max=10000): '))
 
 model.compile(
     loss=tf.keras.losses.SparseCategoricalCrossentropy(),
@@ -50,7 +43,7 @@ model.compile(
 
 model.fit(
     x_train, y_train,
-    epochs=limit_train_count(trainCount,0,10)
+    epochs=limit_train_count(trainCount,0,10000) # basically an input with min and max limit
 )
 
 
