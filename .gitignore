@@ -1,5 +1,6 @@
 .venv
-dataset/*
+dataset
 check.py
 create_sets.py
 __pycache__
+main_dataset
