@@ -5,14 +5,13 @@ import pandas as pd
 
 import tensorflow as tf;
 
-from dataset import verify_dataset, load_x_train, load_y_train, limit_train_count
+from dataset import load_x_train, load_y_train, limit_train_count
 
 from keras.models import Sequential
 from keras.layers import Dense
 
-print('-- Verifying/Loading dataset...')
+print('-- Loading dataset...')
 
-# verify_dataset()
 
 x_train = load_x_train()
 y_train = load_y_train()

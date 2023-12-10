@@ -2,11 +2,9 @@
 
 import tensorflow as tf;
 
-from dataset import verify_dataset, load_x_train, load_y_train, limit_train_count
+from dataset import load_x_train, load_y_train, limit_train_count
 
-print('-- Verifying/Loading dataset...')
-
-# verify_dataset()
+print('-- Loading dataset...')
 
 x_train = load_x_train()
 y_train = load_y_train()
