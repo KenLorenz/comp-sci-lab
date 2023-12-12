@@ -7,6 +7,8 @@ from dataset import load_x_train, load_y_train, limit_train_count
 from keras.models import Sequential
 from keras.layers import Dense
 
+# from keras.callbacks import EarlyStopping
+
 print('-- Loading dataset...')
 
 x_train = load_x_train()
@@ -23,11 +25,11 @@ model = Sequential(
     [               
         tf.keras.Input(shape=(784,)),
         
-        Dense(128, activation='relu'),
-        Dense(64, activation='relu'),
-        Dense(26, activation='softmax') # 26 due to y_train
+        Dense(126, activation='relu',kernel_regularizer=tf.keras.regularizers.l2(0.2)),
+        Dense(64, activation='relu',kernel_regularizer=tf.keras.regularizers.l2(0.2)),
+        Dense(26, activation='softmax')
         
-    ], name = "my_model" 
+    ], name = "new_model" 
 )
 
 print('\n-- Model Created!')
@@ -39,12 +41,10 @@ trainCount = int(input('Initial Training Iterations (min=0, max=10000): '))
 model.compile(
     loss=tf.keras.losses.SparseCategoricalCrossentropy(),
     optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+    metrics=['accuracy'],
 )
 
-model.fit(
-    x_train, y_train,
-    epochs=limit_train_count(trainCount,0,10000) # basically an input with min and max limit
-)
+model.fit(x_train, y_train, validation_split = 0.1, epochs=100)
 
 
 print('\n-- Training end, saving model\n')
