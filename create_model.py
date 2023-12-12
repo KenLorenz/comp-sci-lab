@@ -40,7 +40,7 @@ trainCount = int(input('Initial Training Iterations (min=0, max=10000): '))
 
 model.compile(
     loss=tf.keras.losses.SparseCategoricalCrossentropy(),
-    optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+    optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001),
     metrics=['accuracy'],
 )
 
