@@ -30,7 +30,7 @@ model = Sequential(
         Dense(26, activation='softmax')
         
     ], name = "new_model" 
-)
+) # recommended fit = 200
 
 print('\n-- Model Created!')
 
