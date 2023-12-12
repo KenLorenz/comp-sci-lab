@@ -25,8 +25,14 @@ except:
 
 trainCount = int(input('Training Iterations (min=0, max=10000): '))
 
+modelLoad.compile(
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(),
+    optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001),
+    metrics=['accuracy'],
+)
+
 modelLoad.fit(
-    x_train, y_train,
+    x_train, y_train, validation_split = 0.1,
     epochs=limit_train_count(trainCount,0,10000) # basically an input with min and max limit
 )
 

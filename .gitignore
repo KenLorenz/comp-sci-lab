@@ -4,3 +4,7 @@ check.py
 create_sets.py
 __pycache__
 main_dataset
+
+document_model.ipynb
+document_utils.py
+deeplearning.mplstyle

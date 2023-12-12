@@ -14,24 +14,42 @@ def split_dataset(): # returns in-order: x_train, x_test, y_train, y_test
     return train_test_split(x, y, test_size = 0.2) # 20% train set
 
 
-def dataset_train_test_to_csv(): # creates csv for x_train, x_test, y_train, y_test
+def dataset_to_csv(x1,y1,x2,y2): # creates csv for x_train, x_test, y_train, y_test
     
     x_train, x_test, y_train, y_test = split_dataset()
     
     print('\nCreating Csv 1/4')
-    x_train.head(1000).to_csv('subdataset/x_train.csv', index=False, header=False)
+    x_train.head(x1).to_csv('subdataset/x_train.csv', index=False, header=False)
     
     print('\nCreating Csv 2/4')
-    y_train.head(1000).to_csv('subdataset/y_train.csv', index=False, header=False)
+    y_train.head(y1).to_csv('subdataset/y_train.csv', index=False, header=False)
     
     print('\nCreating Csv 3/4')
-    x_test.head(1000).to_csv('subdataset/x_test.csv', index=False, header=False)
+    x_test.head(x2).to_csv('subdataset/x_test.csv', index=False, header=False)
     
     print('\nCreating Csv 4/4')
-    y_test.head(1000).to_csv('subdataset/y_test.csv', index=False, header=False)
+    y_test.head(y2).to_csv('subdataset/y_test.csv', index=False, header=False)
     
     print('\n-- Done --')
 
+def dataset_to_csv_all(): # creates csv for x_train, x_test, y_train, y_test
+    
+    x_train, x_test, y_train, y_test = split_dataset()
+    
+    print('\nCreating Csv 1/4')
+    x_train.to_csv('subdataset/x_train.csv', index=False, header=False)
+    
+    print('\nCreating Csv 2/4')
+    y_train.to_csv('subdataset/y_train.csv', index=False, header=False)
+    
+    print('\nCreating Csv 3/4')
+    x_test.to_csv('subdataset/x_test.csv', index=False, header=False)
+    
+    print('\nCreating Csv 4/4')
+    y_test.to_csv('subdataset/y_test.csv', index=False, header=False)
+    
+    print('\n-- Done --')
+    
 def verify_all_datasets(): # loads all datasets, still kept just in-case.
     
     x_train = load_x_train()
