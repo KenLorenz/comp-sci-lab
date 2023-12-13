@@ -73,7 +73,7 @@ print('\n-- Model Created!')
 
 print('\n-- Training model\n')
 
-trainCount = int(input('Initial Training Iterations (min: 1, max: 1000): '))
+trainCount = int(input('Initial Training Iterations (min=0, max=10000): '))
 
 model.compile(
     loss=tf.keras.losses.SparseCategoricalCrossentropy(),
@@ -81,7 +81,7 @@ model.compile(
     metrics=['accuracy'],
 )
 
-model.fit(x_train, y_train, validation_split = 0.1, epoch=limit_train_count(trainCount,0,1000))
+model.fit(x_train, y_train, validation_split = 0.1, epochs=100)
 
 
 print('\n-- Training end, saving model\n')

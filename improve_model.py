@@ -24,7 +24,7 @@ except:
     print('Model not found!')
     exit()
 
-trainCount = int(input('Training Iterations (min: 0, max: 1000): '))
+trainCount = int(input('Training Iterations (min=0, max=10000): '))
 
 modelLoad.compile(
     loss=tf.keras.losses.SparseCategoricalCrossentropy(),
@@ -34,7 +34,7 @@ modelLoad.compile(
 
 modelLoad.fit(
     x_train, y_train, validation_split = 0.1,
-    epochs=limit_train_count(trainCount,0,1000) # basically an input with min and max limit
+    epochs=limit_train_count(trainCount,0,10000) # basically an input with min and max limit
 )
 
 
