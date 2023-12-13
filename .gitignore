@@ -1,4 +1,5 @@
 .venv
+<<<<<<< HEAD
 dataset
 check.py
 create_sets.py
@@ -8,3 +9,7 @@ main_dataset
 document_model.ipynb
 document_utils.py
 deeplearning.mplstyle
+=======
+*.csv
+check.py
+>>>>>>> origin/Harry's_branch
